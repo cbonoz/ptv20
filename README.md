@@ -1,9 +1,11 @@
 <p align='center'>
 	<img src="./img/paytv.png"/>
 </p>
-<br/>
-PTV (Pay TV)
+
+Pay TV (PTV)
 ---
+
+Pay TV (PTV) - A FireTV app for engaging with live content and supporting content creators such as musicians and streamers.
 
 ### Screenshots
 <!--
