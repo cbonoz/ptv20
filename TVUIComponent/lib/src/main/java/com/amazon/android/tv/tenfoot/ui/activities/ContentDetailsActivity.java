@@ -44,6 +44,7 @@ import com.amazon.utils.DateAndTimeHelper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.objectweb.asm.ClassWriter;
 
 import static com.amazon.android.contentbrowser.app.ContentBrowserApplication.getWalletSeed;
 
