@@ -50,6 +50,12 @@ import com.amazon.android.utils.LeanbackHelpers;
 import com.amazon.android.utils.Preferences;
 import com.amazon.utils.DateAndTimeHelper;
 import com.amazon.utils.StringManipulation;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -381,7 +387,7 @@ public class ContentBrowser implements IContentBrowser, ICancellableLoad {
      */
     private LauncherIntegrationManager mLauncherIntegrationManager;
 
-    private static final Map<String, Integer> PRICE_MAP = createMap();
+    public static final Map<String, Integer> PRICE_MAP = createMap();
 
     private static Map<String, Integer> createMap() {
         Map<String, Integer> result = new HashMap<>();
@@ -1979,37 +1985,49 @@ public class ContentBrowser implements IContentBrowser, ICancellableLoad {
                 break;
             case CONTENT_ACTION_BUY:
                 // Start flow for collecting payid payment
-                PaymentDialog.createPayIdInputDialog(activity, ((dialog, input) -> {
-                    // Grab values from payment input
-                    String payId = ""; // Pulled from unlocked wallet.
-                    String amount = ""; // Pulled from payid dialog.
-                    final AlertDialog.Builder builder;
-                    dialog.dismiss();
-                    try {
-//                        PayIdHelper.submitPayment(payId, PaymentType.XRP, content.getPaymentId(), amount);
-//                        builder = new AlertDialog.Builder(activity)
-//                                .setTitle("Purchase complete")
-//                                .setMessage(content.toPurchaseString(activity, payId, content.getPaymentId()))
-//                                .setPositiveButton(R.string.ok, (dialogInterface, i) -> dialogInterface.dismiss());
-//                        builder.show();
-                        Toast.makeText(activity,
-                                "Payment Completed!",
-                                Toast.LENGTH_LONG)
-                                .show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Toast.makeText(activity,
-                                "Purchase failed: " + e.getLocalizedMessage(),
-                                Toast.LENGTH_LONG)
-                                .show();
-                    }
-                })).show();
+
+                // TODO: add api call
+                // https://developer.android.com/training/volley/simple
+                String currency = PaymentType.XRP.name();
+                double currencyPerUSD = .246744;
+
+                try {
+                    PaymentDialog.createPayIdInputDialog(activity, content, currency, currencyPerUSD,
+                            (dialog, input) -> {
+                                dialog.dismiss();
+                                // Grab values from payment input
+                                String payId = ""; // Pulled from unlocked wallet.
+                                String amount = ""; // Pulled from payid dialog.
+                                final AlertDialog.Builder builder;
+                                try {
+    //                        PayIdHelper.submitPayment(payId, PaymentType.XRP, content.getPaymentId(), amount);
+    //                        builder = new AlertDialog.Builder(activity)
+    //                                .setTitle("Purchase complete")
+    //                                .setMessage(content.toPurchaseString(activity, payId, content.getPaymentId()))
+    //                                .setPositiveButton(R.string.ok, (dialogInterface, i) -> dialogInterface.dismiss());
+    //                        builder.show();
+                                    Toast.makeText(activity,
+                                            "Payment Completed!",
+                                            Toast.LENGTH_LONG)
+                                            .show();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(activity,
+                                            "Purchase failed: " + e.getLocalizedMessage(),
+                                            Toast.LENGTH_LONG)
+                                            .show();
+                                }
+                            }).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 //                CardEntry.startCardEntryActivity(activity, true, DEFAULT_CARD_ENTRY_REQUEST_CODE);
                 break;
         }
         if (actionCompletedListener != null) {
             actionCompletedListener.onContentActionCompleted(activity, content, actionId);
         }
+
     }
 
     /**

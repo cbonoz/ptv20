@@ -69,4 +69,5 @@ permissions and limitations under the License.
     <string name="buy_tickets_0">Purchase</string>
     <string name="buy_tickets_1">Movie Tickets</string>
     <string name="network_failure">Network Failure</string>
+    <string name="enter_payid">Enter PayID</string>
 </resources>
