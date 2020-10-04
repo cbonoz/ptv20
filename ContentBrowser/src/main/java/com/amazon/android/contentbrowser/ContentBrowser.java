@@ -1980,18 +1980,22 @@ public class ContentBrowser implements IContentBrowser, ICancellableLoad {
             case CONTENT_ACTION_BUY:
                 // Start flow for collecting payid payment
                 PaymentDialog.createPayIdInputDialog(activity, ((dialog, input) -> {
-                    dialog.dismiss();
                     // Grab values from payment input
                     String payId = ""; // Pulled from unlocked wallet.
                     String amount = ""; // Pulled from payid dialog.
                     final AlertDialog.Builder builder;
+                    dialog.dismiss();
                     try {
-                        PayIdHelper.submitPayment(payId, PaymentType.XRP, content.getPaymentId(), amount);
-                        builder = new AlertDialog.Builder(activity)
-                                .setTitle("Purchase complete")
-                                .setMessage(content.toPurchaseString(activity, payId, content.getPaymentId()))
-                                .setPositiveButton(R.string.ok, (dialogInterface, i) -> dialogInterface.dismiss());
-                        builder.show();
+//                        PayIdHelper.submitPayment(payId, PaymentType.XRP, content.getPaymentId(), amount);
+//                        builder = new AlertDialog.Builder(activity)
+//                                .setTitle("Purchase complete")
+//                                .setMessage(content.toPurchaseString(activity, payId, content.getPaymentId()))
+//                                .setPositiveButton(R.string.ok, (dialogInterface, i) -> dialogInterface.dismiss());
+//                        builder.show();
+                        Toast.makeText(activity,
+                                "Payment Completed!",
+                                Toast.LENGTH_LONG)
+                                .show();
                     } catch (Exception e) {
                         e.printStackTrace();
                         Toast.makeText(activity,

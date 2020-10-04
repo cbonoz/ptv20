@@ -19,7 +19,7 @@ public class PaymentDialog {
 
         return new AlertDialog.Builder(context)
                 .setView(subView)
-                .setTitle("Wallet information")
+                .setTitle("Enter your Pay ID")
                 .setPositiveButton("Ok", onClickListener)
                 .setNegativeButton("Back", (dialogInterface, i) -> dialogInterface.cancel())
                 .create();

@@ -37,16 +37,12 @@ import com.amazon.android.model.event.ActionUpdateEvent;
 import com.amazon.android.tv.tenfoot.R;
 import com.amazon.android.tv.tenfoot.base.BaseActivity;
 import com.amazon.android.tv.tenfoot.ui.fragments.ContentDetailsFragment;
-import com.amazon.android.tv.tenfoot.ui.modal.InputDialog;
 import com.amazon.android.ui.constants.PreferencesConstants;
 import com.amazon.android.utils.Preferences;
 import com.amazon.utils.DateAndTimeHelper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.objectweb.asm.ClassWriter;
-
-import static com.amazon.android.contentbrowser.app.ContentBrowserApplication.getWalletSeed;
 
 /**
  * Details activity class that loads the LeanbackDetailsFragment class.
@@ -91,9 +87,9 @@ public class ContentDetailsActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
-        if (getWalletSeed() == null)  {
-            InputDialog.createWalletInputDialog(this).show();
-        }
+//        if (getWalletSeed() == null)  {
+//            showWalletInputModal();
+//        }
     }
 
     @Override
