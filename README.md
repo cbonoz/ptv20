@@ -18,7 +18,7 @@ Pay TV (PTV) - A FireTV app for engaging with live content and supporting conten
 <img src='./img/live.png' width=800/>
 
 <h3>Pay for items directly from your TV with a few clicks using your PayID</h3>
-<img src='./img/pay.png' width=800/>
+<img src='./img/buy.png' width=800/>
 
 ### Useful links
 * https://github.com/xpring-eng/Xpring-SDK-Demo/blob/master/java/src/main/java/io/xpring/demo/PayIdDemo.java
