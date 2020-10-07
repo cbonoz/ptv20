@@ -45,8 +45,6 @@ public class PayIdHelper {
                 txHash = ERROR;
                 break;
         }
-
-
         return txHash;
     }
 
