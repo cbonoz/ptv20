@@ -11,8 +11,8 @@ Pay TV (PTV) - A FireTV app for engaging with live content and supporting conten
 <h3>Netflix style app for discovering artists from your TV</h3>
 <img src='./img/search.png' width=800/>
 
-<h3>Search for artists using your TV</h3>
-<img src='./img/search.png' width=800/>
+<h3>View content posted by creators</h3>
+<img src='./img/detail.png' width=800/>
 
 <h3>Watch live content and support artists in the pandemic</h3>
 <img src='./img/live.png' width=800/>
