@@ -41,6 +41,16 @@ public class Content implements Serializable {
      */
     static final long serialVersionUID = 727566175075960111L;
 
+    public String getPayIdUserName() {
+        return payIdUserName;
+    }
+
+    public void setPayIdUserName(String payIdUserName) {
+        this.payIdUserName = payIdUserName;
+    }
+
+    public static String DEFAULT_USERNAME = "neildiamond";
+
     /**
      * Debug TAG.
      */
@@ -70,6 +80,8 @@ public class Content implements Serializable {
      * Description of the content.
      */
     private String mDescription;
+
+    private String payIdUserName = DEFAULT_USERNAME;
 
     /**
      * Url for the card image of the content.

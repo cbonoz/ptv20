@@ -25,6 +25,7 @@ import com.amazon.android.uamp.UAMP;
 import com.amazon.android.utils.Preferences;
 import com.amazon.auth.IAuthentication;
 import com.amazon.purchase.IPurchase;
+import com.google.gson.Gson;
 import com.squareup.leakcanary.RefWatcher;
 
 import android.app.AlarmManager;
@@ -57,6 +58,7 @@ import javax.net.ssl.X509TrustManager;
  */
 public class ContentBrowserApplication extends ModularApplication {
 
+    public static Gson GSON = new Gson();
     /**
      * Debug tag.
      */

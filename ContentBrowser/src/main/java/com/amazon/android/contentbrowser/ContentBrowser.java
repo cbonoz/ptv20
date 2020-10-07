@@ -14,6 +14,15 @@
  */
 package com.amazon.android.contentbrowser;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v17.leanback.widget.SparseArrayObjectAdapter;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.amazon.android.contentbrowser.database.helpers.RecentDatabaseHelper;
 import com.amazon.android.contentbrowser.database.helpers.WatchlistDatabaseHelper;
 import com.amazon.android.contentbrowser.database.records.RecentRecord;
@@ -22,9 +31,7 @@ import com.amazon.android.contentbrowser.helper.AuthHelper;
 import com.amazon.android.contentbrowser.helper.ErrorHelper;
 import com.amazon.android.contentbrowser.helper.FontManager;
 import com.amazon.android.contentbrowser.helper.LauncherIntegrationManager;
-import com.amazon.android.contentbrowser.payments.PayIdHelper;
 import com.amazon.android.contentbrowser.payments.PaymentDialog;
-import com.amazon.android.contentbrowser.payments.PaymentType;
 import com.amazon.android.contentbrowser.payments.PurchaseHelper;
 import com.amazon.android.contentbrowser.recommendations.RecommendationManager;
 import com.amazon.android.interfaces.ICancellableLoad;
@@ -50,24 +57,8 @@ import com.amazon.android.utils.LeanbackHelpers;
 import com.amazon.android.utils.Preferences;
 import com.amazon.utils.DateAndTimeHelper;
 import com.amazon.utils.StringManipulation;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.greenrobot.eventbus.EventBus;
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v17.leanback.widget.SparseArrayObjectAdapter;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -82,9 +73,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
-import static com.amazon.android.contentbrowser.app.ContentBrowserApplication.setWalletSeed;
-import static com.amazon.android.contentbrowser.helper.LauncherIntegrationManager
-        .getSourceOfContentPlayRequest;
+import static com.amazon.android.contentbrowser.helper.LauncherIntegrationManager.getSourceOfContentPlayRequest;
 
 /**
  * This class is the controller of the content browsing solution.
@@ -1986,38 +1975,11 @@ public class ContentBrowser implements IContentBrowser, ICancellableLoad {
             case CONTENT_ACTION_BUY:
                 // Start flow for collecting payid payment
 
-                // TODO: add api call
-                // https://developer.android.com/training/volley/simple
-                String currency = PaymentType.XRP.name();
-                double currencyPerUSD = .246744;
-
                 try {
-                    PaymentDialog.createPayIdInputDialog(activity, content, currency, currencyPerUSD,
+                    PaymentDialog.createPayIdInputDialog(activity, content,
                             (dialog, input) -> {
                                 dialog.dismiss();
-                                // Grab values from payment input
-                                String payId = ""; // Pulled from unlocked wallet.
-                                String amount = ""; // Pulled from payid dialog.
-                                final AlertDialog.Builder builder;
-                                try {
-    //                        PayIdHelper.submitPayment(payId, PaymentType.XRP, content.getPaymentId(), amount);
-    //                        builder = new AlertDialog.Builder(activity)
-    //                                .setTitle("Purchase complete")
-    //                                .setMessage(content.toPurchaseString(activity, payId, content.getPaymentId()))
-    //                                .setPositiveButton(R.string.ok, (dialogInterface, i) -> dialogInterface.dismiss());
-    //                        builder.show();
-                                    Toast.makeText(activity,
-                                            "Payment Completed!",
-                                            Toast.LENGTH_LONG)
-                                            .show();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                    Toast.makeText(activity,
-                                            "Purchase failed: " + e.getLocalizedMessage(),
-                                            Toast.LENGTH_LONG)
-                                            .show();
-                                }
-                            }).show();
+                            });
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

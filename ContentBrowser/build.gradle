@@ -51,7 +51,10 @@ dependencies {
     compile ("io.xpring:xpring4j:6.1.1"){
         exclude group: 'asm', module: 'asm'
     }
-    compile 'com.android.volley:volley:1.1.1'
+    compile("com.squareup.okhttp3:okhttp:4.9.0")
+    compile 'com.squareup.picasso:picasso:2.71828'
+
+
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
