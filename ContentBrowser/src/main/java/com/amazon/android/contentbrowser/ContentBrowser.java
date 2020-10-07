@@ -386,6 +386,15 @@ public class ContentBrowser implements IContentBrowser, ICancellableLoad {
         result.put("2004", R.string.buy_4);
         result.put("2005", R.string.buy_5);
         result.put("2006", R.string.buy_6);
+        result.put("4991", R.string.buy_3);
+        result.put("4992", R.string.buy_3);
+        result.put("4993", R.string.buy_3);
+        result.put("4994", R.string.buy_3);
+        result.put("4995", R.string.buy_3);
+        result.put("5001", R.string.buy_3);
+        result.put("5002", R.string.buy_3);
+        result.put("5003", R.string.buy_3);
+        result.put("5004", R.string.buy_3);
         return Collections.unmodifiableMap(result);
     }
 
