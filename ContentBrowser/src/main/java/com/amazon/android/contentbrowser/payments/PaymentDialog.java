@@ -2,7 +2,6 @@ package com.amazon.android.contentbrowser.payments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Looper;
@@ -18,10 +17,8 @@ import com.squareup.picasso.Picasso;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Locale;
 
-import io.xpring.payid.generated.model.Address;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -29,6 +26,7 @@ import okhttp3.Response;
 import static com.amazon.android.contentbrowser.ContentBrowser.PRICE_MAP;
 import static com.amazon.android.contentbrowser.app.ContentBrowserApplication.GSON;
 import static com.amazon.android.contentbrowser.payments.PayIdHelper.HTTP_CLIENT;
+import static com.amazon.android.contentbrowser.payments.PayIdHelper.PAYTV_SERVER;
 import static com.amazon.android.contentbrowser.payments.PayIdHelper.createPayIdUrl;
 import static com.amazon.android.contentbrowser.payments.PayIdHelper.getAddresses;
 
@@ -55,7 +53,8 @@ public class PaymentDialog {
 
         TextView conversionText = subView.findViewById(R.id.conversion_text);
         final String payId = createPayIdUrl(content.getPayIdUserName());
-        final String text = String.format(Locale.US, "Base Price: $%.2f\nPayID: %s\n\nFound addresses:", price, payId);
+        final String text = String.format(Locale.US, "Base Price: $%.2f\nUser: %s\nServer: %s\n\nPay for this item by scanning one of the below QR codes:",
+                price, content.getPayIdUserName(), PAYTV_SERVER);
         conversionText.setText(text);
 
         getAddresses(payId, new Callback() {
@@ -71,7 +70,7 @@ public class PaymentDialog {
                 String btcAddress = null;
                 String xrpAddress = null;
                 for (CustomAddress address : addressResponse.addresses) {
-                    String current = address.details.getAddress();
+                    String current = address.details.address;
                     switch (address.paymentNetwork) {
                         case "BTC":
                             btcAddress = current;

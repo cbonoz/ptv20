@@ -1,20 +1,14 @@
 package com.amazon.android.contentbrowser.payments;
 
-import com.google.gson.Gson;
-
-import java.security.SecureRandom;
 import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 
 import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import io.xpring.payid.PayIdClient;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -143,7 +137,7 @@ public class PayIdHelper {
 
     private static String sendBtc(String payId, String amount) throws Exception {
         // A client to resolve PayIDs on any network..
-        PayIdClient payIdClient = new PayIdClient();
+//        PayIdClient payIdClient = new PayIdClient();
 
 //        System.out.println("Resolving PayID: " + payId);
 //        System.out.println("On network: " + btcNetwork);

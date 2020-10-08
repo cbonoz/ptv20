@@ -20,7 +20,7 @@ android {
     buildToolsVersion "28.0.3"
 
     defaultConfig {
-        minSdkVersion 26
+        minSdkVersion 22
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -47,10 +47,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:support-v4:23.1.1'
     compile 'com.android.support:recommendation:23.1.1'
-    compile "org.ow2.asm:asm:7.1"
-    compile ("io.xpring:xpring4j:6.1.1"){
-        exclude group: 'asm', module: 'asm'
-    }
+    // Using PayID API directly to avoid android incompat of xpring.
+//    compile "org.ow2.asm:asm:7.1"
+//    compile ("io.xpring:xpring4j:6.1.1"){
+//        exclude group: 'asm', module: 'asm'
+//    }
+    compile 'com.google.code.gson:gson:2.8.6'
     compile("com.squareup.okhttp3:okhttp:4.9.0")
     compile 'com.squareup.picasso:picasso:2.71828'
 
